@@ -4,6 +4,8 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import MobileSidebar from "./MobileSidebar";
+import { usePathname } from "next/navigation";
+import { getPageMeta } from "@/lib/config/pageMeta";
 
 export default function DashboardShell({ children }) {
     const [collapsed, setCollapsed] = useState(false);
@@ -11,6 +13,9 @@ export default function DashboardShell({ children }) {
 
     const toggleSidebar = () => setCollapsed(prev => !prev);
     const toggleMobileSidebar = () => setIsMobileOpen(prev => !prev);
+
+    const pathname = usePathname();
+    const { title, description } = getPageMeta(pathname);
 
     return (
         <div className="h-screen font-[family-name:var(--font-geist-sans)]">
@@ -23,8 +28,8 @@ export default function DashboardShell({ children }) {
 
                 {/* Main Area */}
                 <div className="flex flex-col flex-1 w-full">
-                    <Navbar toggleMobileSidebar={toggleMobileSidebar} />
-                    <main className="flex-1 overflow-y-auto p-6 w-full">
+                    <Navbar title={title} description={description} toggleMobileSidebar={toggleMobileSidebar} />
+                    <main className="flex-1 overflow-y-auto p-6 w-full bg-light-gray">
                         {children}
                     </main>
                 </div>

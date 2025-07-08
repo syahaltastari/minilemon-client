@@ -3,8 +3,8 @@ import { Home, User } from "lucide-react";
 export const sidebarMenu = [
     {
         icon: <Home size={20} />,
-        label: "Dashboard",
-        location: "/dashboard",
+        label: "Home",
+        location: "/home",
     },
     {
         icon: <User size={20} />,

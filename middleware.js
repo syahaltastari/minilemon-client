@@ -46,7 +46,7 @@ export async function middleware(req) {
 // Define which routes the middleware applies to
 export const config = {
     matcher: [
-        "/dashboard/:path*",
+        "/home/:path*",
         "/user-management/:path*",
     ],
 };

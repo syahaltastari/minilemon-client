@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Minilemon",
+  title: "Minilemon App",
   description: "Manage all users in one place. Control access, asiggn roles, accross your platform.",
 };
 

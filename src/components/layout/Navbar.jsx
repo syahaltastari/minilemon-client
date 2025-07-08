@@ -1,8 +1,9 @@
 "use client";
 
 import { Menu } from "lucide-react";
+import LogoutCard from "../auth/LogoutCard";
 
-export default function Navbar({ toggleMobileSidebar }) {
+export default function Navbar({ title, description, toggleMobileSidebar }) {
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white shadow">
             {/* Mobile Toggle */}
@@ -10,15 +11,13 @@ export default function Navbar({ toggleMobileSidebar }) {
                 <Menu size={24} />
             </button>
 
-            <div className="text-lg font-semibold">Dashboard</div>
+            <div>
+                <span className="text-tertiary">Welcome, </span> 
+                <span>Syahal Tastari</span>
+            </div>
 
-            <div className="flex items-center gap-4">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    className="hidden md:block px-3 py-1 border rounded"
-                />
-                <button className="w-8 h-8 rounded-full bg-gray-200">👤</button>
+            <div>
+                <LogoutCard />
             </div>
         </header>
     );

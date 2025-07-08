@@ -2,26 +2,19 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export function getUserFromCookie() {
-    const token = cookies().get("token")?.value;
-    if (!token) return null;
+export async function requireAuth() {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
 
-    try {
-        return jwt.verify(token, process.env.JWT_SECRET);
-    } catch {
-        return null;
-    }
-}
-
-export function requireAuth() {
-    const token = cookies().get("token")?.value;
     if (!token) {
-        return redirect("/");
+        redirect("/");
     }
 
     try {
-        return jwt.verify(token, process.env.JWT_SECRET);
-    } catch {
-        return redirect("/");
+        const user = jwt.verify(token, process.env.JWT_SECRET);
+        return user;
+    } catch (err) {
+        console.error("Invalid or expired token:", err);
+        redirect("/");
     }
 }

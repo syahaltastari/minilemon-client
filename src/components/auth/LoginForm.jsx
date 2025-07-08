@@ -19,7 +19,7 @@ export default function LoginForm() {
     const handleLogin = async (values, { setSubmitting }) => {
         try {
             await login(values);
-            router.push("/dashboard");
+            router.push("/home");
         } catch (error) {
             const message = error?.message || "Something went wrong.";
             toast.error(message);

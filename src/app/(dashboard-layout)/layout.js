@@ -6,7 +6,9 @@ export default async function DashboardLayout({ children }) {
     const user = await requireAuth();
     return (
         <AuthProvider user={user}>
-            <DashboardShell>{children}</DashboardShell>
+            <DashboardShell>
+                {children}
+            </DashboardShell>
         </AuthProvider>
     );
 }

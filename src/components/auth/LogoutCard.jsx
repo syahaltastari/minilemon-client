@@ -23,18 +23,9 @@ export default function LogoutCard() {
     };
 
     return (
-        <div className="flex items-center justify-between p-3 rounded-xl bg-white shadow-md w-full">
+        <div className="flex items-center justify-between rounded-xl bg-white w-full">
             <div className="flex items-center gap-3">
-                <Image
-                    src={"https://avatar.iran.liara.run/public/6"}
-                    alt="User Avatar"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                />
-                <div className="flex flex-col">
-                    <span className="text-sm font-medium">{user.name}</span>
-                </div>
+                
             </div>
             <button
                 onClick={handleLogout}

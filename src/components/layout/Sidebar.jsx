@@ -1,21 +1,21 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { LayoutPanelLeft } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import { sidebarMenu } from "@/constant/sidebarMenu";
-import LogoutCard from "../auth/LogoutCard";
 import Image from "next/image";
 
 export default function Sidebar({ collapsed, toggleCollapsed }) {
     return (
         <aside
-            className={`bg-primary shadow-md transition-all duration-300 ease-in-out flex flex-col ${collapsed ? "w-20" : "w-64"} hidden md:flex`}
+            className={`shadow-md transition-all duration-300 ease-in-out flex flex-col ${collapsed ? "w-20" : "w-64"} hidden md:flex`}
         >
             <div className="flex items-center justify-between p-4 h-16">
                 <Image
                     src={'/image/logo.png'}
                     width={80}
                     height={38}
+                    alt="Minilemon Logo"
                 />
             </div>
 
@@ -26,12 +26,9 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
                     ))}
                 </ul>
 
-                <div className="w-full">
-                    <button onClick={toggleCollapsed} className="p-1 rounded hover:bg-gray-100 mt-4">
-                        <SidebarItem icon={<Menu size={20} />} label="" collapsed={collapsed} />
-                    </button>
-                    <LogoutCard />
-                </div>
+                <button onClick={toggleCollapsed} className="flex items-center justify-center p-3 hover:bg-secondary rounded-xl h-12 self-end">
+                    <LayoutPanelLeft size={20} className="" />
+                </button>
             </nav>
         </aside>
     );
