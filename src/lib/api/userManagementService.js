@@ -1,10 +1,16 @@
+import { getSession } from "next-auth/react";
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function getUsers(page = 1, limit = 10, search) {
+    const session = await getSession();
+    const token = session?.user?.token;
     try {
         const res = await fetch(`${API_BASE_URL}/users?page=${page}&limit=${limit}&search=${encodeURIComponent(search)}`, {
             method: "GET",
-            credentials: "include",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
 
         const data = await res.json();

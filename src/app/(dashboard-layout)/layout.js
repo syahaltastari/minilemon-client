@@ -1,14 +1,18 @@
-import { requireAuth } from "@/lib/auth/serverAuth";
-import { AuthProvider } from "@/contexts/AuthContext";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 import DashboardShell from "@/components/layout/DashboardShell";
 
 export default async function DashboardLayout({ children }) {
-    const user = await requireAuth();
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user) {
+        redirect("/");
+    }
+
     return (
-        <AuthProvider user={user}>
-            <DashboardShell>
-                {children}
-            </DashboardShell>
-        </AuthProvider>
+        <DashboardShell>
+            {children}
+        </DashboardShell>
     );
 }

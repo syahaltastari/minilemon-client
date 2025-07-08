@@ -3,9 +3,9 @@
 import { useRouter } from "next/navigation";
 import { Formik, Form } from "formik";
 import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 import { LoginSchema } from "@/lib/schemas/validationSchema";
-import { login } from "@/lib/api/authService";
 import InputField from "../ui/InputField";
 
 const initialValues = {
@@ -17,15 +17,20 @@ export default function LoginForm() {
     const router = useRouter();
 
     const handleLogin = async (values, { setSubmitting }) => {
-        try {
-            await login(values);
+        const res = await signIn("credentials", {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+        });
+
+        if (res.ok) {
+            toast.success("Login successful!");
             router.push("/home");
-        } catch (error) {
-            const message = error?.message || "Something went wrong.";
-            toast.error(message);
-        } finally {
-            setSubmitting(false);
+        } else {
+            toast.error(res.error || "Invalid email or password.");
         }
+
+        setSubmitting(false);
     };
 
     return (

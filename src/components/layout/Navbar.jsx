@@ -1,10 +1,16 @@
-"use client";
+'use client';
 
 import { Menu } from "lucide-react";
 import LogoutCard from "../auth/LogoutCard";
-import { useAuth } from "@/contexts/AuthContext";
+import { useSession } from "next-auth/react";
+
 export default function Navbar({ title, description, toggleMobileSidebar }) {
-    const { user } = useAuth();
+    const { data: session, status } = useSession();
+
+    if (status === "loading") {
+        return null;
+    }
+
     return (
         <header className="flex items-center justify-between px-6 py-4 bg-white shadow">
             {/* Mobile Toggle */}
@@ -14,7 +20,7 @@ export default function Navbar({ title, description, toggleMobileSidebar }) {
 
             <div>
                 <span className="text-tertiary">Welcome, </span>
-                <span>{user.name}</span>
+                <span>{session?.user?.name || session?.user?.email || "Guest"}</span>
             </div>
 
             <div>

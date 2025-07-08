@@ -6,16 +6,16 @@ import { LogOut } from "lucide-react";
 import { logout } from "@/lib/api/authService";
 import ConfirmLogoutModal from "../modals/confirmLogutModal";
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 
 export default function LogoutCard() {
     const router = useRouter();
     const [modalIsOpen, setModalIsOpen] = useState(false);
-
     const handleLogout = async () => {
         try {
-            await logout();
-            toast.success("Successfully logged out");
+            await signOut();
             router.push("/");
+            toast.success("Successfully logged out");
         } catch (err) {
             console.error("Logout error:", err.message || err);
             toast.error("Logout failed. Please try again.");
