@@ -18,8 +18,8 @@ export default function LoginPage() {
           />
 
           <div className="min-w-[50%] mx-auto">
-            <h1 className="font-bold text-center text-2xl">Login to Dashboard</h1>
-            <p className="text-center text-sm text-gray-500">Fill the form below to login</p>
+            <h1 className="font-bold text-center lg:text-3xl">Login to Dashboard</h1>
+            <p className="text-center text-sm text-gray-500 mt-2">Fill the form below to login</p>
 
             <LoginForm />
 
