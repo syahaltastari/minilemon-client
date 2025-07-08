@@ -1,3 +1,4 @@
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function login(values) {
@@ -38,27 +39,5 @@ export async function logout() {
     } catch (err) {
         console.error("Logout error:", err);
         throw err;
-    }
-}
-
-export async function getCurrentUser(cookieHeader = "") {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
-            method: "GET",
-            headers: {
-                ...(cookieHeader && { Cookie: cookieHeader }),
-            },
-            credentials: "include",
-            cache: "no-store",
-        });
-
-        if (!res.ok) return null;
-
-        const data = await res.json();
-        return data.user;
-    } catch (err) {
-        console.error("Failed to fetch current user:", err);
-        
-        return null;
     }
 }
