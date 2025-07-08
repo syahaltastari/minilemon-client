@@ -3,9 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #3674b5;
-  --secondary: #578fca;
-  --tertiary: F5F0CD;
+  --primary: #2563eb;
+  --color-primary: #2563eb; /* blue-600 */
+  --color-secondary: #f97316; /* orange-500 */
+  --color-muted: #6b7280; /* gray-500 */
+  --color-bg: #f9fafb; /* slate-50 */
+  --color-border: #e5e7eb; /* gray-200 */
+  --color-text: #111827; /* gray-900 */
 }
 
 @theme inline {

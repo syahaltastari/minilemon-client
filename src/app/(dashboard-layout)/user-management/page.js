@@ -2,10 +2,10 @@
 
 import mockDataUser from "@/constant/mockDataUser";
 import Table from "@/components/table/Table"
-import DashboardLayout from "@/components/layout/DashboardLayout";
+
 export default function HomePage() {
     return (
-        <DashboardLayout>
+        <div>
             <h2 className="text-2xl font-bold mb-4">User Management</h2>
             <div className="grid">
                 <div className="bg-white p-4 rounded shadow col-span-2">
@@ -22,7 +22,6 @@ export default function HomePage() {
                     <Table data={mockDataUser} />
                 </div>
             </div>
-        </DashboardLayout>
-
+        </div>
     );
 }

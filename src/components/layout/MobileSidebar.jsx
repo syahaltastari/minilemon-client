@@ -1,4 +1,3 @@
-// src/components/layout/MobileSidebar.jsx
 "use client";
 
 import { Home, User, X } from "lucide-react";

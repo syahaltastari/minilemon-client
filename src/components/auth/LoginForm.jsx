@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import { toast } from "react-hot-toast";
 
 import { LoginSchema } from "@/lib/schemas/validationSchema";
-import { login } from "@/lib/api/auth";
+import { login } from "@/lib/api/authService";
 import InputField from "../ui/InputField";
 
 const initialValues = {

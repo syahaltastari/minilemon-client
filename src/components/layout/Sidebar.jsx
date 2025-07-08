@@ -3,20 +3,20 @@
 import { Menu } from "lucide-react";
 import SidebarItem from "./SidebarItem";
 import { sidebarMenu } from "@/constant/sidebarMenu";
+import LogoutCard from "../auth/LogoutCard";
+import Image from "next/image";
 
 export default function Sidebar({ collapsed, toggleCollapsed }) {
     return (
         <aside
-            className={`bg-slate-50 shadow-md transition-all duration-300 ease-in-out flex flex-col 
-      ${collapsed ? "w-20" : "w-64"} hidden md:flex`}
+            className={`bg-primary shadow-md transition-all duration-300 ease-in-out flex flex-col ${collapsed ? "w-20" : "w-64"} hidden md:flex`}
         >
-            <div className="flex items-center justify-between p-4 border-b h-16">
-                <span
-                    className={`text-xl font-bold origin-left transition-all duration-300 
-          ${collapsed ? "opacity-0 scale-0" : "opacity-100 scale-100"}`}
-                >
-                    My Dashboard
-                </span>
+            <div className="flex items-center justify-between p-4 h-16">
+                <Image
+                    src={'/image/logo.png'}
+                    width={80}
+                    height={38}
+                />
             </div>
 
             <nav className="flex-1 p-4 flex flex-col justify-between items-start w-full">
@@ -26,9 +26,12 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
                     ))}
                 </ul>
 
-                <button onClick={toggleCollapsed} className="p-1 rounded hover:bg-gray-100 mt-4">
-                    <SidebarItem icon={<Menu size={20} />} label="" collapsed={collapsed} />
-                </button>
+                <div className="w-full">
+                    <button onClick={toggleCollapsed} className="p-1 rounded hover:bg-gray-100 mt-4">
+                        <SidebarItem icon={<Menu size={20} />} label="" collapsed={collapsed} />
+                    </button>
+                    <LogoutCard />
+                </div>
             </nav>
         </aside>
     );
