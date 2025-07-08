@@ -27,11 +27,17 @@ export async function getUsers(page = 1, limit = 10, search) {
 }
 
 export async function addUser(values) {
+    const session = await getSession();
+    const token = session?.user?.token;
+
     const res = await fetch(`${API_BASE_URL}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
         credentials: "include",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
     });
 
     const data = await res.json();
@@ -53,12 +59,17 @@ export async function addUser(values) {
 
 
 export async function updateUser(id, values) {
+    const session = await getSession();
+    const token = session?.user?.token;
     try {
         const res = await fetch(`${API_BASE_URL}/users/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(values),
             credentials: "include",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
 
         const data = await res.json();
@@ -75,10 +86,15 @@ export async function updateUser(id, values) {
 }
 
 export async function deleteUser(id) {
+    const session = await getSession();
+    const token = session?.user?.token;
     try {
         const res = await fetch(`${API_BASE_URL}/users/${id}`, {
             method: "DELETE",
             credentials: "include",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
 
         if (!res.ok) {
