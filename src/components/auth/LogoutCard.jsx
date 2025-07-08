@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { LogOut } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
 import { logout } from "@/lib/api/authService";
+import ConfirmLogoutModal from "../modals/confirmLogutModal";
+import { useState } from "react";
 
 export default function LogoutCard() {
-    const { user } = useAuth();
     const router = useRouter();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const handleLogout = async () => {
         try {
@@ -25,15 +25,21 @@ export default function LogoutCard() {
     return (
         <div className="flex items-center justify-between rounded-xl bg-white w-full">
             <div className="flex items-center gap-3">
-                
+
             </div>
             <button
-                onClick={handleLogout}
-                className="hover:bg-gray-100 rounded-full p-1 transition"
+                onClick={() => setModalIsOpen(true)}
+                className="hover:bg-gray-100 rounded-full p-1 transition cursor-pointer"
                 aria-label="Logout"
             >
-                <LogOut className="w-5 h-5 text-gray-600" />
+                <LogOut className="w-6 h-6 text-gray-600" />
             </button>
+
+            <ConfirmLogoutModal
+                isOpen={modalIsOpen}
+                onClose={() => setModalIsOpen(false)}
+                onConfirm={handleLogout}
+            />
         </div>
     );
 }

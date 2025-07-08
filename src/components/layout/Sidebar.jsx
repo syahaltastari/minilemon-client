@@ -26,7 +26,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
                     ))}
                 </ul>
 
-                <button onClick={toggleCollapsed} className="flex items-center justify-center p-3 hover:bg-secondary rounded-xl h-12 self-end">
+                <button onClick={toggleCollapsed} className="flex items-center justify-center p-3 hover:bg-secondary rounded-xl h-12 self-end cursor-pointer">
                     <LayoutPanelLeft size={20} className="" />
                 </button>
             </nav>

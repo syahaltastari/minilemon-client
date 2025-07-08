@@ -32,7 +32,7 @@ const useColumns = (onEdit, onDelete) =>
                 cell: info => (
                     <div className="flex gap-x-3">
                         <Pencil size={20} onClick={() => onEdit(info.row.original)} className="text-blue-800 cursor-pointer" />
-                        <Trash size={20} onClick={() => onDelete(info.row.original.id)} className="text-red-800 cursor-pointer" />
+                        <Trash size={20} onClick={() => onDelete(info.row.original)} className="text-red-800 cursor-pointer" />
                     </div>
                 ),
             }),
@@ -131,7 +131,7 @@ export default function Table({
                 <button
                     onClick={() => onPageChange(page - 1)}
                     disabled={page === 1}
-                    className="px-3 py-1 bg-primary rounded disabled:opacity-50"
+                    className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
                 >
                     Prev
                 </button>
@@ -141,7 +141,7 @@ export default function Table({
                 <button
                     onClick={() => onPageChange(page + 1)}
                     disabled={page === totalPages}
-                    className="px-3 py-1 bg-primary rounded disabled:opacity-50"
+                    className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
                 >
                     Next
                 </button>

@@ -5,9 +5,12 @@ import Table from "@/components/table/Table";
 import AddUserModal from "@/components/modals/addUserModals";
 import { getUsers, addUser, deleteUser, updateUser } from "@/lib/api/userManagementService";
 import toast from "react-hot-toast";
+import ConfirmDeleteModal from "@/components/modals/confirmDeleteModal";
 
 export default function UserManagement() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
@@ -40,13 +43,20 @@ export default function UserManagement() {
         return response;
     };
 
-    const handleDeleteUser = async (id) => {
+    const handleDeleteClick = (user) => {
+        setSelectedUser(user);
+        setConfirmDeleteOpen(true);
+    };
+
+    const handleConfirmDelete = async () => {
         try {
-            await deleteUser(id);
-            toast.success("User deleted successfully");
-            await fetchUsers();
-        } catch (err) {
-            toast.error(err.message || "Failed to delete user");
+            await deleteUser(selectedUser.id);
+            toast.success("User deleted");
+            fetchUsers();
+        } catch (error) {
+            toast.error(error.response?.data?.message || "Failed to delete user");
+        } finally {
+            setConfirmDeleteOpen(false);
         }
     };
 
@@ -80,7 +90,7 @@ export default function UserManagement() {
                 onPageChange={setPage}
                 onPageSizeChange={setPageSize}
                 loading={loading}
-                onDelete={handleDeleteUser}
+                onDelete={handleDeleteClick}
                 onEdit={(user) => {
                     setEditData(user);
                     setIsModalOpen(true);
@@ -96,6 +106,13 @@ export default function UserManagement() {
                 onSubmit={editData ? handleEditUser : handleAddUser}
                 isEdit={!!editData}
                 initialData={editData}
+            />
+
+            <ConfirmDeleteModal
+                isOpen={confirmDeleteOpen}
+                onClose={() => setConfirmDeleteOpen(false)}
+                onConfirm={handleConfirmDelete}
+                userName={selectedUser?.name}
             />
         </div>
     );
