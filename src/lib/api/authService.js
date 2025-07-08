@@ -58,6 +58,7 @@ export async function getCurrentUser(cookieHeader = "") {
         return data.user;
     } catch (err) {
         console.error("Failed to fetch current user:", err);
+        
         return null;
     }
 }
