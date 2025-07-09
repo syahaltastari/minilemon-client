@@ -3,17 +3,19 @@
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { LogOut } from "lucide-react";
-import { logout } from "@/lib/api/authService";
-import ConfirmLogoutModal from "../modals/confirmLogutModal";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
+
+import ConfirmLogoutModal from "../modals/confirmLogutModal";
 
 export default function LogoutCard() {
     const router = useRouter();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const handleLogout = async () => {
         try {
-            await signOut();
+            await signOut({
+                callbackUrl: '/',
+            });
             router.push("/");
             toast.success("Successfully logged out");
         } catch (err) {
