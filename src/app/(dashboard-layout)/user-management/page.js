@@ -1,10 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { PlusIcon } from "lucide-react";
+import toast from "react-hot-toast";
+
+import { getUsers, addUser, deleteUser, updateUser } from "@/lib/api/userManagementService";
 import Table from "@/components/table/Table";
 import AddUserModal from "@/components/modals/addUserModals";
-import { getUsers, addUser, deleteUser, updateUser } from "@/lib/api/userManagementService";
-import toast from "react-hot-toast";
 import ConfirmDeleteModal from "@/components/modals/confirmDeleteModal";
 
 export default function UserManagement() {
@@ -61,8 +63,9 @@ export default function UserManagement() {
     };
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow col-span-2 ">
-            <div className="flex justify-between items-center py-4">
+        <main className="min-h-[85vh] bg-white p-4 rounded-lg shadow col-span-2">
+            <h1 className="text-2xl">List Users</h1>
+            <div className="flex flex-col-reverse items-start gap-4 md:flex-row md:justify-between md:items-center py-4">
                 <input
                     type="text"
                     value={search}
@@ -70,14 +73,15 @@ export default function UserManagement() {
                         setSearch(e.target.value);
                         setPage(1);
                     }}
-                    className="border rounded-md py-2 px-3 outline-none"
+                    className="border rounded-md py-2 px-3 outline-none border-tertiary"
                     placeholder="Search by name or email"
                 />
                 <button
                     type="button"
-                    className="bg-primary py-2 px-3 rounded-md cursor-pointer"
+                    className="bg-primary py-2 px-3 rounded-md cursor-pointer flex items-center gap-x-1"
                     onClick={() => setIsModalOpen(true)}
                 >
+                    <PlusIcon size={20} />
                     Add User
                 </button>
             </div>
@@ -114,6 +118,6 @@ export default function UserManagement() {
                 onConfirm={handleConfirmDelete}
                 userName={selectedUser?.name}
             />
-        </div>
+        </main>
     );
 }

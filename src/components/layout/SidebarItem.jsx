@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function SidebarItem({ icon, label, collapsed, location = "#" }) {
+export default function SidebarItem({ icon, label, collapsed, location = "#", onClick }) {
     const pathname = usePathname();
     // Check if this item is the active route
     const isActive = pathname.startsWith(location);
@@ -15,6 +15,7 @@ export default function SidebarItem({ icon, label, collapsed, location = "#" }) 
                 transition-colors duration-200
                 ${isActive ? " bg-primary text-slate-700 border border-primary font-semibold shadow" : "hover:bg-amber-100 hover:text-slate-600 text-tertiary"}
                 `}
+                onClick={onClick}
             >
                 <span>{icon}</span>
                 <span

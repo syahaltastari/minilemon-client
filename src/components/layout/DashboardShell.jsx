@@ -19,7 +19,7 @@ export default function DashboardShell({ children }) {
 
     return (
         <div className="h-screen font-[family-name:var(--font-geist-sans)]">
-            <div className="flex h-full">
+            <div className="flex h-screen overflow-y-auto">
                 {/* Sidebar (Desktop) */}
                 <Sidebar collapsed={collapsed} toggleCollapsed={toggleSidebar} />
 

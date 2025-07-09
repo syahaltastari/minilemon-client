@@ -127,25 +127,26 @@ export default function Table({
             )}
 
             {/* Pagination */}
-            <div className="flex justify-end items-center gap-5 p-4 text-sm">
-                <button
-                    onClick={() => onPageChange(page - 1)}
-                    disabled={page === 1}
-                    className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
-                >
-                    Prev
-                </button>
-                <span className="text-gray-600">
-                    Page {page} of {totalPages}
-                </span>
-                <button
-                    onClick={() => onPageChange(page + 1)}
-                    disabled={page === totalPages}
-                    className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
-                >
-                    Next
-                </button>
-
+            <div className="flex flex-col-reverse md:flex-row md:justify-end md:items-center gap-3 p-4 text-sm">
+                <div className="flex items-center gap-x-3">
+                    <button
+                        onClick={() => onPageChange(page - 1)}
+                        disabled={page === 1}
+                        className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
+                    >
+                        Prev
+                    </button>
+                    <span className="text-gray-600">
+                        Page {page} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => onPageChange(page + 1)}
+                        disabled={page === totalPages}
+                        className="px-3 py-1 bg-primary rounded disabled:opacity-50 cursor-pointer"
+                    >
+                        Next
+                    </button>
+                </div>
                 {/* Page Size Selector */}
                 <div className="flex items-center gap-2">
                     <label htmlFor="pageSize">Rows per page:</label>
