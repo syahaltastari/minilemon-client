@@ -45,7 +45,7 @@ cd minilemon-server
    JWT_SECRET=your_secret_key
    ```
 
-   Or you can rename .env.example to .env and fill the variable. 
+   Or you can rename .env.example to .env and fill the variable.
 
 3. Run migrations:
 
@@ -71,7 +71,9 @@ cd minilemon-server
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:5000
    ```
-   Or you can rename .env.example to .env.local and fill the variable. 
+
+   Or you can rename .env.example to .env.local and fill the variable.
+
 3. Run the development server:
    ```bash
    npm run dev
@@ -98,7 +100,7 @@ cd minilemon-server
 
 ---
 
-## 🧩 Features
+## Features
 
 ### Authentication
 
@@ -119,20 +121,23 @@ cd minilemon-server
 
 ---
 
-## 📎 Project Structure (Client & Server)
+## Live Demo
 
-Each repository follows best practices with modular architecture, making the codebase easy to scale and maintain.
+You can try the live version of the Minilemon App here:
 
----
+Email: admin@minilemon.com
+Password: haihai 
 
-## 🧑‍💻 Contributing
 
-This is a solo-built project, but PRs and suggestions are welcome!
-
----
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
+- **Frontend**: [https://minilemon-app.up.railway.app](https://minilemon-app.up.railway.app)
+- **Backend API**: [https://minilemon-api.up.railway.app](https://minilemon-api.up.railway.app)
 
 ---
+
+## API Documentation
+
+The full API collection is available on Postman:
+
+- [View Documentation](https://documenter.getpostman.com/view/46539029/2sB34cpiLx)
+
+> Import the collection and set the environment variables to match your deployment or local setup.
