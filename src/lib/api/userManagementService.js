@@ -32,11 +32,10 @@ export async function addUser(values) {
 
     const res = await fetch(`${API_BASE_URL}/users`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
-        credentials: "include",
         headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
         },
     });
 
@@ -64,10 +63,9 @@ export async function updateUser(id, values) {
     try {
         const res = await fetch(`${API_BASE_URL}/users/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(values),
-            credentials: "include",
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
         });
@@ -91,7 +89,6 @@ export async function deleteUser(id) {
     try {
         const res = await fetch(`${API_BASE_URL}/users/${id}`, {
             method: "DELETE",
-            credentials: "include",
             headers: {
                 Authorization: `Bearer ${token}`,
             },
