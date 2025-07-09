@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍋 Minilemon App
 
-## Getting Started
+Minilemon App is a modern, full-stack web application designed for managing users and organizational departments efficiently. Built with **Next.js 15** and **Express.js + Sequelize**, it follows real-world project structures, clean code practices, and modern authentication strategies.
 
-First, run the development server:
+---
+
+## Tech Stack
+
+- **Frontend**: Next.js 15, React, TailwindCSS, Formik, React Hot Toast
+- **Backend**: Express.js, Sequelize (PostgreSQL or MySQL), JWT Auth
+- **Deployment**: Railway
+- **Version Control**: Git + GitHub
+
+---
+
+## How to Run Project Locally
+
+> Make sure you have **Node.js**, **npm/yarn**, **MySQL** installed.
+
+### 1. Clone the Repositories
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone frontend
+git clone https://github.com/yourusername/minilemon-client.git
+cd minilemon-client
+
+# Clone backend
+git clone https://github.com/yourusername/minilemon-server.git
+cd minilemon-server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Setup Backend
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Configure your `.env` file:
 
-To learn more about Next.js, take a look at the following resources:
+   ```env
+   PORT=5000
+   DATABASE_URL=your_database_url
+   JWT_SECRET=your_secret_key
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Or you can rename .env.example to .env and fill the variable. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Run migrations:
 
-## Deploy on Vercel
+   ```bash
+   npx sequelize-cli db:migrate
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Start the backend:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Setup Frontend
+
+1. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. Configure your `.env.local`:
+
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:5000
+   ```
+   Or you can rename .env.example to .env.local and fill the variable. 
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## How to Deploy
+
+### Deploy on Railway
+
+1. Go to [https://railway.app](https://railway.app) and connect your GitHub repositories.
+2. Deploy both the **client** and **server** repos separately.
+3. Set environment variables in each project’s settings:
+
+   - For **server**: `DATABASE_URL`, `JWT_SECRET`, etc.
+   - For **client**: `NEXT_PUBLIC_API_URL=https://your-server.up.railway.app`
+
+4. Set custom domains or use Railway’s default:
+   - `minilemon-app.up.railway.app`
+   - `minilemon-api.up.railway.app`
+
+> Ensure your backend is configured to allow CORS and uses `app.set("trust proxy", 1)` for cookie-based auth in production.
+
+---
+
+## 🧩 Features
+
+### Authentication
+
+- Secure login system using JWT
+- Protected routes for authenticated users
+- Formik + Yup validation with error handling
+
+### User Management
+
+- Add, update, and delete users
+- Search, filter, and toggle active status
+- Reuse modal for Add/Edit actions
+
+### Responsive Design
+
+- Fully responsive with TailwindCSS
+- Clean, minimal UI
+
+---
+
+## 📎 Project Structure (Client & Server)
+
+Each repository follows best practices with modular architecture, making the codebase easy to scale and maintain.
+
+---
+
+## 🧑‍💻 Contributing
+
+This is a solo-built project, but PRs and suggestions are welcome!
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
